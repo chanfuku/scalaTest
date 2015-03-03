@@ -1,0 +1,52 @@
+@(userForm: Form[User], groupList:List[String], userList:List[(String,String,String,String,String, java.util.Date)], size:Int, inputKana:String, inputGroup:String)
+@import helper._
+<head>
+	<link rel="stylesheet" type="text/css" href="http://localhost:63342/my-first-app-ebato/root/views/css/user.css">
+</head>
+@main("メンバー検索"){
+	<h1>メンバー情報検索</h1>
+	@helper.form(action = routes.UserController.entrySubmit){
+		<fieldset>
+			<legend>検索条件を入力して下さい</legend>
+<!--			<p><label>名前(カナ)：@helper.inputText(userForm("name"))</label></p>-->
+			<p><label>名前(カナ)：<input type="text" name="kana" value="@inputKana"></label></p>
+			<label><p>グループ：
+			<select name="group">
+				<option value="empty">---</option>
+				@for(group <- groupList) {
+					@if(group == inputGroup){
+						<option value="@group" selected>@group</option>
+					} else {
+						<option value="@group">@group</option>
+					}
+				}
+			</select>
+			</p></label>
+		</fieldset>
+		<input type="submit" value="検索">
+	}	
+}
+@if(size > 0) {
+@size 件
+<Table>
+	<tr>
+		<th>名前(漢字)</th>
+		<th>名前(カナ)</th>
+		<th>メールアドレス</th>
+		<th>拠点</th>
+		<th>グループ</th>
+		<th>入社日</th>
+		<!--		<th>入社年月日</th>-->
+	</tr>
+	@for(user <- userList) {
+	<tr>
+		<td>@user._1</td>
+		<td>@user._2</td>
+		<td>@user._3</td>
+		<td>@user._4</td>
+		<td>@user._5</td>
+		<td>@user._6</td>
+	</tr>
+	}
+</Table>
+}

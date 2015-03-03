@@ -1,0 +1,25 @@
+@(userList:List[(String,String,String,String,String)], size:Int)
+@import helper._
+<head>
+	<link rel="stylesheet" type="text/css" href='@routes.Assets.at("css/user.css")'>
+</head>
+@size 件
+<Table>
+	<tr>
+		<th>名前(漢字)</th>
+		<th>名前(カナ)</th>
+		<th>メールアドレス</th>
+		<th>拠点</th>
+		<th>グループ</th>
+<!--		<th>入社年月日</th>-->
+	</tr>
+		@for(user <- userList) {
+	<tr>
+		<td>@user._1</td>
+		<td>@user._2</td>
+		<td>@user._3</td>
+		<td>@user._4</td>
+		<td>@user._5</td>
+	</tr>
+		}
+</Table>

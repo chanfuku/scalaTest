@@ -1,0 +1,22 @@
+@(registForm : Form[UserRegistForm], list : List[Hobby])
+@import helper._
+<head>
+	<link rel="stylesheet" type="text/css" href='@routes.Assets.at("css/user.css")'>
+</head>
+@main("メンバー登録"){
+	<h1>メンバー登録</h1>
+	@helper.form(action = routes.UserController.input()){
+	<fieldset>
+		<legend>メンバー登録</legend>
+			<p>名前：<input type="text" name="name"></p>
+			<p>メールアドレス：<input type="text" name="mail"></p>
+			<p>生年月日：<input type="date" name="birthday"></p>
+			<p>趣味:
+				<Select name="hobby">
+					<option value=""></option>
+				</Select>
+			</p>
+			<p><input type="submit" value="登録"></p>
+	</fieldset>
+	}
+}
